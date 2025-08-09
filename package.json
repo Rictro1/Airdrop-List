@@ -1,0 +1,18 @@
+{
+  "name": "airdrop-list",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm --prefix server i && npm --prefix server run prisma:generate && npm --prefix client i",
+    "dev": "concurrently \"npm:server\" \"npm:client\"",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "start": "npm --prefix server run start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
+

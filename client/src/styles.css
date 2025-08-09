@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { height: 100%; }
+  /* Reserve scrollbar space to prevent layout shift on route changes */
+  html { scrollbar-gutter: stable both-edges; }
+  body { @apply bg-base-900 text-white antialiased; overflow-y: scroll; }
+}
+
+@layer components {
+  .app-container { @apply max-w-6xl mx-auto px-4; }
+  .ios-nav { @apply flex items-center gap-1 bg-white/10 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-glass; }
+  .ios-tab { @apply relative px-4 py-1 rounded-full text-white/80 hover:text-white transition-colors; }
+  .ios-tab.is-active { @apply text-white; }
+  .ios-tab.is-active::before {
+    content: "";
+    @apply absolute inset-0 rounded-full bg-white/15;
+  }
+  /* removed inner top highlight line */
+  .glass { @apply bg-white/5 border border-white/10 rounded-xl shadow-glass; }
+  .table-row { @apply hover:bg-white/5 transition-colors; }
+  .btn { @apply inline-flex items-center gap-2 rounded-md px-3 py-2 bg-white/10 hover:bg-white/15 text-white; }
+  .link { @apply text-accent-500 hover:text-accent-400; }
+  .btn-primary { @apply bg-gradient-to-br from-accent-500 to-indigo-500 text-black font-medium hover:from-accent-400 hover:to-indigo-400; }
+  .btn-danger { @apply bg-red-500/20 text-red-200 hover:bg-red-500/25; }
+  .badge { @apply inline-flex items-center gap-1 px-2.5 py-0.5 text-xs rounded-full border border-white/10; }
+  .input { @apply glass bg-transparent outline-none focus:ring-2 focus:ring-accent-500/40 rounded-md px-3 py-2; }
+  .airdrop-logo { @apply w-10 h-10 rounded-lg object-cover transition-transform; }
+  .status-finished { @apply bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/25; }
+  .status-not-finished { @apply bg-white/10 text-white/80 hover:bg-white/15; }
+  .status-btn { @apply w-[8.5rem] justify-center; }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { width: 0; height: 0; }
+}
+
+/* Modal specific refinements */
+@layer components {
+  .modal-overlay { @apply bg-black/60; }
+  .modal-panel { @apply rounded-2xl bg-base-800/90 border border-white/10 shadow-glass; }
+}
+
+

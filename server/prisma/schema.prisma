@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Airdrop {
+  id            Int       @id @default(autoincrement())
+  name          String
+  xHandle       String    // X (Twitter) handle or profile URL
+  websiteUrl    String
+  info          String
+  logoUrl       String?
+  status        String    @default("NOT_FINISHED")
+  tasks         Task[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Task {
+  id         Int      @id @default(autoincrement())
+  title      String
+  done       Boolean  @default(false)
+  airdrop    Airdrop  @relation(fields: [airdropId], references: [id], onDelete: Cascade)
+  airdropId  Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Faucet {
+  id         Int      @id @default(autoincrement())
+  name       String
+  logoUrl    String?
+  linkUrl    String
+  status     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Waitlist {
+  id         Int      @id @default(autoincrement())
+  name       String
+  logoUrl    String?
+  linkUrl    String
+  status     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+
+
